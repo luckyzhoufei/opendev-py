@@ -125,6 +125,17 @@ class QueryProcessor:
 
         self._llm_caller = LLMCaller(console=console)
 
+        from opendev.repl.tool_executor import ToolExecutor
+
+        self._tool_executor = ToolExecutor(
+            console,
+            output_formatter,
+            mode_manager,
+            session_manager,
+            self._ace_reflector,
+            self._ace_curator,
+        )
+
         from opendev.core.runtime.cost_tracker import CostTracker
 
         self._cost_tracker = CostTracker()
@@ -134,6 +145,7 @@ class QueryProcessor:
             mode_manager=self._tool_executor.mode_manager,
             console=console,
             llm_caller=self._llm_caller,
+            tool_executor=self._tool_executor,
             cost_tracker=self._cost_tracker,
         )
 
@@ -321,6 +333,8 @@ class QueryProcessor:
         finally:
             self._current_task_monitor = None
 
+    # 没有调用
+    @DeprecationWarning
     def _record_tool_learnings(
         self,
         query: str,
@@ -350,6 +364,7 @@ class QueryProcessor:
             self._tool_executor.set_last_agent_response(str(self._last_agent_response))
 
         # Delegate to ToolExecutor (has internal error handling)
+        # def in tool_executor.py
         self._tool_executor.record_tool_learnings(query, tool_call_objects, outcome, agent)
 
     def _format_tool_feedback(self, tool_calls: list, outcome: str) -> str:
