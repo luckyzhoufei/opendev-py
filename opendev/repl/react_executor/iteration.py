@@ -201,7 +201,8 @@ class IterationMixin:
             should_skip_thinking = self._last_tools_were_readonly(ctx.messages)
 
         if thinking_visible and not should_skip_thinking:
-            thinking_trace = self._get_thinking_trace(
+            # call llm
+            thinking_trace = self._get_thinking_trace(   # def thinking.py
                 ctx.messages,
                 ctx.agent,
                 ctx.ui_callback,
@@ -298,6 +299,7 @@ class IterationMixin:
             message_count=len(ctx.messages),
             thinking_visible=thinking_visible,
         )
+        # call llm
         response, latency_ms = self._call_action_llm(
             ctx.agent, ctx.messages, task_monitor, thinking_visible=thinking_visible
         )
@@ -388,7 +390,7 @@ class IterationMixin:
             return self._handle_no_tool_calls(
                 ctx, content, response.get("message", {}).get("content")
             )
-
+        # def tool_processing.py
         # Process tool calls
         return self._process_tool_calls(
             ctx, tool_calls, content, response.get("message", {}).get("content")

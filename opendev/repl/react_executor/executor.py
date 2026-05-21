@@ -56,7 +56,6 @@ if TYPE_CHECKING:
     from opendev.core.context_engineering.history import SessionManager
     from opendev.models.config import Config
     from opendev.repl.llm_caller import LLMCaller
-    from opendev.repl.tool_executor import ToolExecutor
     from opendev.core.runtime.approval import ApprovalManager
     from opendev.core.context_engineering.history import UndoManager
     from opendev.core.debug.session_debug_logger import SessionDebugLogger
@@ -136,7 +135,6 @@ class ReactExecutor(ThinkingMixin, ToolProcessingMixin, SessionPersistenceMixin,
         mode_manager,
         console: Optional["Console"] = None,
         llm_caller: Optional["LLMCaller"] = None,
-        tool_executor: Optional["ToolExecutor"] = None,
         cost_tracker: Optional["CostTracker"] = None,
         parallel_executor=None,
     ):
@@ -157,7 +155,7 @@ class ReactExecutor(ThinkingMixin, ToolProcessingMixin, SessionPersistenceMixin,
         self.config = config
         self._mode_manager = mode_manager
         self._llm_caller = llm_caller
-        self._tool_executor = tool_executor
+        # self._tool_executor = tool_executor
         self._cost_tracker = cost_tracker
         self._last_operation_summary = None
         self._last_error = None

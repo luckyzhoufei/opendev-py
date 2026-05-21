@@ -59,6 +59,7 @@ class ToolProcessingMixin:
         - self.OFFLOAD_THRESHOLD
     """
 
+    # call in iteration
     def _process_tool_calls(self, ctx, tool_calls: list, content: str, raw_content: Optional[str]):
         """Process a list of tool calls."""
         from opendev.core.agents.prompts import get_reminder

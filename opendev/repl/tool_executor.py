@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from opendev.models.message import ToolCall
 
 
+@DeprecationWarning
 class ToolExecutor:
     """Handles tool execution with approval, undo, and learning."""
 
@@ -99,6 +100,7 @@ class ToolExecutor:
         tool_start = _time.monotonic()
         try:
             # Execute tool with interrupt support
+            # tools.registry.py
             result = tool_registry.execute_tool(
                 tool_name,
                 tool_args,

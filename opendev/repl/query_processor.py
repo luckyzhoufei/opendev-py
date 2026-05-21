@@ -125,16 +125,6 @@ class QueryProcessor:
 
         self._llm_caller = LLMCaller(console=console)
 
-        from opendev.repl.tool_executor import ToolExecutor
-
-        self._tool_executor = ToolExecutor(
-            console,
-            output_formatter,
-            mode_manager,
-            session_manager,
-            self._ace_reflector,
-            self._ace_curator,
-        )
         from opendev.core.runtime.cost_tracker import CostTracker
 
         self._cost_tracker = CostTracker()
@@ -144,7 +134,6 @@ class QueryProcessor:
             mode_manager=self._tool_executor.mode_manager,
             console=console,
             llm_caller=self._llm_caller,
-            tool_executor=self._tool_executor,
             cost_tracker=self._cost_tracker,
         )
 
