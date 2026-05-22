@@ -199,7 +199,13 @@ class ToolExecutor:
         try:
             # Ensure ACE components are available
             if not self._ace_reflector or not self._ace_curator:
-                return
+                try:
+                    from opendev.core.context_engineering.memory import Reflector
+                    self._ace_reflector = Reflector(agent.client)
+                    from opendev.core.context_engineering.memory import Curator
+                    self._ace_curator = Curator(agent.client)
+                except Exception:  # pragma: no cover
+                    pass
 
             playbook = session.get_playbook()
 
@@ -296,3 +302,4 @@ class ToolExecutor:
             lines.append(f"Partial success: {successes}/{len(tool_calls)} tools succeeded")
 
         return "\n".join(lines)
+
