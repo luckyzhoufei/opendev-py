@@ -382,7 +382,7 @@ class IterationMixin:
         if ctx.ui_callback and hasattr(ctx.ui_callback, "on_thinking_complete"):
             ctx.ui_callback.on_thinking_complete()
 
-        # Record agent response
+        # Record agent response for ACE learning.
         self._record_agent_response(content, tool_calls)
 
         # Dispatch based on tool calls presence

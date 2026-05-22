@@ -349,6 +349,7 @@ class ToolProcessingMixin:
             append_nudge(ctx.messages, get_reminder("tool_denied_nudge"))
 
         # Persist and Learn
+        # def session_persistence.py
         _debug_log("[TOOLS] Before _persist_step")
         self._persist_step(ctx, tool_calls, tool_results_by_id, content, raw_content)
         _debug_log("[TOOLS] After _persist_step")

@@ -97,6 +97,7 @@ class IterationContext:
     doom_loop_nudge_count: int = 0  # How many times we've auto-nudged
 
 
+# 核心
 class ReactExecutor(ThinkingMixin, ToolProcessingMixin, SessionPersistenceMixin, IterationMixin):
     """Executes ReAct loop (Reasoning -> Acting -> Observing)."""
 
@@ -446,6 +447,7 @@ class ReactExecutor(ThinkingMixin, ToolProcessingMixin, SessionPersistenceMixin,
                     query_preview=query[:200],
                     message_count=len(messages),
                 )
+                # 核心
                 action = self._run_iteration(ctx)
                 _session_debug().log(
                     "react_iteration_end",

@@ -37,7 +37,7 @@ class SessionPersistenceMixin:
         - self._current_reasoning_content
         - self._current_token_usage
     """
-
+    # call in  ToolProcessingMixin::_process_tool_calls
     def _persist_step(
         self,
         ctx,

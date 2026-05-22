@@ -235,6 +235,7 @@ class QueryProcessor:
         debug_log("QueryProcessor", f"Final result: interrupted={interrupted}")
         return interrupted
 
+    @DeprecationWarning
     def _init_ace_components(self, agent):
         """Initialize ACE components lazily on first use.
 
