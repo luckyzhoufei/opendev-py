@@ -111,6 +111,7 @@ def _run_non_interactive(
     )
 
     try:
+        # run_sync def in run_loop.py::RunLoopMixin;RunLoopMixin mix in agent.py::MainAgent
         result = agent.run_sync(prompt, deps, message_history=message_history)
     except Exception as exc:  # noqa: BLE001
         console.print(f"[{ERROR}]Error: {exc}[/{ERROR}]")

@@ -1262,6 +1262,3 @@ def launch_textual_cli(
 
     runner.run()
 
-
-if __name__ == "__main__":
-    launch_textual_cli()

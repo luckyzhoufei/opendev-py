@@ -12,8 +12,6 @@ from typing import Any, Dict, Optional, Tuple
 from opendev.web.state import WebState
 from opendev.web.logging_config import logger
 from opendev.web.protocol import WSMessageType
-from opendev.models.message import ChatMessage, Role
-from opendev.models.agent_deps import AgentDependencies
 from opendev.core.runtime import ConfigManager
 from opendev.models.config import AppConfig
 
