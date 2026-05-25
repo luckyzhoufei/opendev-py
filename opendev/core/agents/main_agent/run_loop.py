@@ -204,7 +204,7 @@ class RunLoopMixin:
 
     def run_sync(
         self,
-        message: str,
+        message: str,   # prompt
         deps: Any,
         message_history: Optional[list[dict]] = None,
         ui_callback: Optional[Any] = None,
@@ -285,6 +285,8 @@ class RunLoopMixin:
                 messages = self._maybe_compact(messages)
 
                 # Route to VLM model when images are present
+                # def http_clients.py
+                # 函数里面会判断是否班汉图片
                 model_id, http_client = self._resolve_vlm_model_and_client(messages)
 
                 payload = {

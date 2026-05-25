@@ -25,7 +25,6 @@ from .tracer import get_tracer
 
 if TYPE_CHECKING:
     from opendev.core.context_engineering.history import SessionManager
-    from opendev.core.context_engineering.memory import Playbook
     from opendev.core.context_engineering.tools.implementations import FileOperations
     from opendev.models.config import Config
 

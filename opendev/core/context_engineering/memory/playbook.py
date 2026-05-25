@@ -20,8 +20,8 @@ class Bullet:
     """Single playbook entry storing a strategy or insight."""
 
     id: str
-    section: str
-    content: str
+    section: str  # 区分类目
+    content: str  # 内容或策略
     helpful: int = 0
     harmful: int = 0
     neutral: int = 0
@@ -55,8 +55,8 @@ class Playbook:
     """
 
     def __init__(self) -> None:
-        self._bullets: Dict[str, Bullet] = {}
-        self._sections: Dict[str, List[str]] = {}
+        self._bullets: Dict[str, Bullet] = {}   # id bullet
+        self._sections: Dict[str, List[str]] = {}   # section, id_list
         self._next_id = 0
 
     def __repr__(self) -> str:
@@ -242,6 +242,7 @@ class Playbook:
     # ------------------------------------------------------------------ #
     # Presentation helpers
     # ------------------------------------------------------------------ #
+    # 返回全部bullet
     def as_prompt(self) -> str:
         """Return playbook as formatted string for LLM prompting.
 
@@ -256,6 +257,7 @@ class Playbook:
                 parts.append(f"- [{bullet.id}] {bullet.content} {counters}")
         return "\n".join(parts)
 
+    # 对bullet有选择
     def as_context(
         self,
         query: Optional[str] = None,

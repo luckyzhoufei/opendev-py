@@ -92,7 +92,7 @@ class BulletSelector:
                 self._batch_generate_embeddings(query, bullets)
 
             # Score all bullets
-            scored_bullets = [self._score_bullet(bullet, query) for bullet in bullets]
+            scored_bullets = [self._score_bullet(bullet, query) for bullet in bullets]  # 按时间有效性，策略有效性，已经query相关性打分
 
             # Sort by score (descending)
             scored_bullets.sort(key=lambda x: x.score, reverse=True)
