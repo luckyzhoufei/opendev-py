@@ -56,6 +56,7 @@ if TYPE_CHECKING:
     from opendev.core.context_engineering.history import SessionManager
     from opendev.models.config import Config
     from opendev.repl.llm_caller import LLMCaller
+    from opendev.repl.tool_executor import ToolExecutor
     from opendev.core.runtime.approval import ApprovalManager
     from opendev.core.context_engineering.history import UndoManager
     from opendev.core.debug.session_debug_logger import SessionDebugLogger
@@ -97,7 +98,6 @@ class IterationContext:
     doom_loop_nudge_count: int = 0  # How many times we've auto-nudged
 
 
-# 核心
 class ReactExecutor(ThinkingMixin, ToolProcessingMixin, SessionPersistenceMixin, IterationMixin):
     """Executes ReAct loop (Reasoning -> Acting -> Observing)."""
 
@@ -447,7 +447,6 @@ class ReactExecutor(ThinkingMixin, ToolProcessingMixin, SessionPersistenceMixin,
                     query_preview=query[:200],
                     message_count=len(messages),
                 )
-                # 核心
                 action = self._run_iteration(ctx)
                 _session_debug().log(
                     "react_iteration_end",

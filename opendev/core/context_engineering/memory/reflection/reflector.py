@@ -30,7 +30,6 @@ class ReflectionResult:
     reasoning: str
 
 
-@DeprecationWarning
 class ExecutionReflector:
     """Analyzes tool execution sequences to extract learnable patterns.
 

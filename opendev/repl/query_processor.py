@@ -135,7 +135,6 @@ class QueryProcessor:
             self._ace_reflector,
             self._ace_curator,
         )
-
         from opendev.core.runtime.cost_tracker import CostTracker
 
         self._cost_tracker = CostTracker()

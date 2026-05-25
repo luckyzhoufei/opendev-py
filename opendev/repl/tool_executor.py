@@ -302,4 +302,3 @@ class ToolExecutor:
             lines.append(f"Partial success: {successes}/{len(tool_calls)} tools succeeded")
 
         return "\n".join(lines)
-
