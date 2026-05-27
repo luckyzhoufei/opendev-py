@@ -52,6 +52,7 @@ class RegistrationMixin:
         # Override system prompt for subagent
         agent._subagent_system_prompt = spec["system_prompt"]
 
+        # 这是一个数据结构 def in specs.py
         self._agents[spec["name"]] = CompiledSubAgent(
             name=spec["name"],
             description=spec["description"],
