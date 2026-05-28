@@ -199,6 +199,7 @@ class MainAgent(HttpClientMixin, LlmCallsMixin, RunLoopMixin, BaseAgent):
     def build_tool_schemas(self, thinking_visible: bool = True) -> list[dict[str, Any]]:
         return self._schema_builder.build(thinking_visible=thinking_visible)
 
+    #call in run_loop.py
     def _maybe_compact(self, messages: list[dict[str, Any]]) -> list[dict[str, Any]]:
         """Auto-compact messages if approaching the context window limit."""
         if self._compactor is None:

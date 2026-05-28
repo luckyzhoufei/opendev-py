@@ -505,7 +505,7 @@ class QueryProcessor:
         agent,
         tool_registry,
         approval_manager: "ApprovalManager",
-        undo_manager: "UndoManager",
+        undo_manager: "UndoManager",   # 回滚操作
         ui_callback,
         plan_requested: bool = False,
     ) -> tuple:

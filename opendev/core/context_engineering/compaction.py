@@ -535,7 +535,7 @@ class ContextCompactor:
         if not middle:
             return messages
 
-        summary_text = self._summarize(middle)
+        summary_text = self._summarize(middle)  # 不是增量压缩，是直接压缩除了最近的原始信息
         if not summary_text:
             summary_text = "[Previous conversation context was compacted.]"
 
@@ -712,6 +712,7 @@ class ContextCompactor:
 
         return sanitized
 
+    # 调用llm做messages summary
     def _summarize(self, messages: list[dict[str, Any]]) -> str:
         """Use the configured LLM to summarize a block of messages."""
         sanitized = self._sanitize_for_summarization(messages)

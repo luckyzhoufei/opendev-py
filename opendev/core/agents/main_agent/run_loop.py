@@ -503,6 +503,7 @@ class RunLoopMixin:
                 has_task_complete = any(
                     tc["function"]["name"] == "task_complete" for tc in tool_calls
                 )
+                # 判断是否可以并行，通过预先定义的可并行工具过滤
                 all_parallelizable = (
                     len(tool_calls) > 1
                     and not has_task_complete

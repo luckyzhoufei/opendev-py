@@ -388,7 +388,7 @@ class TextualRunner:
         model_slots = self.model_config_manager._build_model_slots(snapshot)
 
         create_kwargs = {
-            "on_message": self.enqueue_message,
+            "on_message": self.enqueue_message,  # 往消息队列里加消息
             "model": model_display,
             "model_slots": model_slots,
             "on_cycle_mode": self._cycle_mode,

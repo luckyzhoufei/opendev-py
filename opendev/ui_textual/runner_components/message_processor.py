@@ -123,12 +123,14 @@ class MessageProcessor:
         self._message_ready.set()  # Wake up processor immediately
         self._notify_queue_update(from_ui_thread=True)
 
+    #call in runner.py::_run_app
     def start(self) -> None:
         """Start the background processor thread."""
         if self._processor_thread is not None:
             return
 
         self._processor_stop.clear()
+        #run_loop里面有专门的循环处理消息
         self._processor_thread = threading.Thread(
             target=self._run_loop, daemon=True, name="message-processor"
         )
@@ -153,6 +155,7 @@ class MessageProcessor:
         else:
             self._app.call_from_thread(self._queue_update_callback, size)
 
+    #call in start
     def _run_loop(self) -> None:
         """Main processing loop running in background thread."""
         while not self._processor_stop.is_set():
