@@ -16,7 +16,6 @@ from opendev.core.runtime.approval import ApprovalManager
 from opendev.core.runtime import (
     ConfigManager,
     ModeManager,
-    OperationMode,
 )
 from opendev.core.context_engineering.history import SessionManager, UndoManager
 from opendev.core.runtime.monitoring import ErrorHandler
@@ -183,6 +182,7 @@ class REPL:
         self.agent = self.normal_agent
 
         # Flag for plan mode request via Shift+Tab
+        # 可以直接通过命令改变
         self._pending_plan_request = False
 
     def _init_ui_components(self):
@@ -563,6 +563,7 @@ class REPL:
             self._pending_plan_request = False
 
         # Delegate to query processor
+        # 会区分是否要求plan
         result = self.query_processor.process_query(
             query,
             self.agent,

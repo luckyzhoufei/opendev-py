@@ -130,7 +130,7 @@ class MessageProcessor:
             return
 
         self._processor_stop.clear()
-        #run_loop里面有专门的循环处理消息
+        #run_loop里面有专门的循环处理消息,循环调用handle_query=runner.py::_run_query
         self._processor_thread = threading.Thread(
             target=self._run_loop, daemon=True, name="message-processor"
         )
@@ -209,7 +209,7 @@ class MessageProcessor:
                         if handler:
                             handler(message)
                     else:
-                        handler = self._callbacks.get("handle_query")
+                        handler = self._callbacks.get("handle_query")  # runner.py::_run_query::repl._process_query
                         render = self._callbacks.get("render_responses")
                         if handler:
                             new_messages = handler(message)

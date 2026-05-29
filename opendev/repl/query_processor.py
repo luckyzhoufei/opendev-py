@@ -551,6 +551,10 @@ class QueryProcessor:
         # Inject plan mode request if user toggled Shift+Tab
         if plan_requested:
             plan_path = self.mode_manager.get_plan_file_path() or "~/.opendev/plans/plan.md"
+            # ----plan_subagent_request----
+            # User requested planning. Spawn a Planner subagent to plan this task. Include the task description and this
+            # exact plan file path in the prompt: {plan_file_path} After the Planner returns,
+            # call present_plan(plan_file_path="{plan_file_path}").
             messages.append(
                 {
                     "role": "user",

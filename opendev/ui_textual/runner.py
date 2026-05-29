@@ -685,6 +685,8 @@ class TextualRunner:
                 exc,
             )
 
+    # message_processor.py::_run_loop里面会循环调用handle_query=_run_query
+    # runner.py::self.message_processor::handle_query
     def _run_query(self, message: str) -> list[ChatMessage]:
         """Execute a user query via the REPL and return new session messages."""
         import traceback
@@ -695,6 +697,7 @@ class TextualRunner:
         )
 
         # Check for plan approval in PLAN mode
+        # 按plan执行
         if self._check_and_execute_plan_approval(message):
             # Plan approval handled, return updated messages
             session = self.session_manager.get_current_session()
@@ -913,6 +916,7 @@ class TextualRunner:
 
             try:
                 # Process query with UI callback for real-time display
+                # 这里面的plan模式，是通过tool调用实现的
                 if hasattr(self.repl, "_process_query_with_callback"):
                     self.repl._process_query_with_callback(message, ui_callback)
                 else:
