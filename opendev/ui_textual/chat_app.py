@@ -65,7 +65,7 @@ class OpenDevChatApp(App):
 
     def __init__(
         self,
-        on_message: Optional[Callable[[str], None]] = None,
+        on_message: Optional[Callable[[str], None]] = None,   # call in message_controller.py
         model: str = "claude-sonnet-4",
         model_slots: Mapping[str, tuple[str, str]] | None = None,
         on_cycle_mode: Optional[Callable[[], str]] = None,
@@ -1113,15 +1113,3 @@ def create_chat_app(
         is_resumed_session=is_resumed_session,
     )
 
-
-if __name__ == "__main__":
-    # Run standalone for testing
-    def handle_message(text: str):
-        # Callback for external message handling
-        # Don't print here - it will interfere with the UI!
-        pass
-
-    app = create_chat_app(on_message=handle_message)
-    # Run in application mode (full screen with alternate screen buffer)
-    # This is the default behavior when inline is not specified
-    app.run()

@@ -345,7 +345,7 @@ class ReactExecutor(ThinkingMixin, ToolProcessingMixin, SessionPersistenceMixin,
         agent,
         tool_registry,
         approval_manager: "ApprovalManager",
-        undo_manager: "UndoManager",
+        undo_manager: "UndoManager",   # 回滚操作
         ui_callback=None,
         continue_after_subagent: bool = False,
     ) -> tuple:
@@ -556,6 +556,7 @@ class ReactExecutor(ThinkingMixin, ToolProcessingMixin, SessionPersistenceMixin,
             result.insert(0, {"role": "system", "content": system_prompt})
         return result
 
+    #call in iteration.py
     def _maybe_compact(self, ctx: IterationContext) -> None:
         """Staged context optimization as usage grows.
 

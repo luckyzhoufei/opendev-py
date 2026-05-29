@@ -20,6 +20,8 @@ class ConversationSummary:
     last_summarized_index: int  # Index in filtered messages list up to which we've summarized
 
 
+# 压缩消息；每次压缩history summary + incremental messages
+@DeprecationWarning
 class ConversationSummarizer:
     """Generates and caches conversation summaries for episodic memory.
 
@@ -94,6 +96,7 @@ class ConversationSummarizer:
 
         # Build prompt with both placeholders
         prompt_template = load_prompt("memory/conversation_summary_prompt")
+        # 同时有历史的summary和增量message
         prompt = prompt_template.format(
             previous_summary=previous_summary if previous_summary else "(No previous summary)",
             new_messages=self._format_conversation(new_messages),

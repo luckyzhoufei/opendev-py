@@ -32,6 +32,7 @@ class UndoResult:
         self.error = error
 
 
+# 回滚操作
 class UndoManager:
     """Manager for undoing operations."""
 

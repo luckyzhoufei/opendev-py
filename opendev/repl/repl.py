@@ -16,7 +16,6 @@ from opendev.core.runtime.approval import ApprovalManager
 from opendev.core.runtime import (
     ConfigManager,
     ModeManager,
-    OperationMode,
 )
 from opendev.core.context_engineering.history import SessionManager, UndoManager
 from opendev.core.runtime.monitoring import ErrorHandler
@@ -157,7 +156,7 @@ class REPL:
         self.mode_manager = ModeManager()
         self.approval_manager = ApprovalManager(self.console)
         self.error_handler = ErrorHandler(self.console)
-        self.undo_manager = UndoManager(self.config.max_undo_history)
+        self.undo_manager = UndoManager(self.config.max_undo_history)    # 回滚操作
         self.session_model_manager = SessionModelManager(self.config)
 
     def _init_runtime_service(self):
@@ -183,6 +182,7 @@ class REPL:
         self.agent = self.normal_agent
 
         # Flag for plan mode request via Shift+Tab
+        # 可以直接通过命令改变
         self._pending_plan_request = False
 
     def _init_ui_components(self):
@@ -550,6 +550,7 @@ class REPL:
             else:
                 self.console.print(line)
 
+    # runner.py::TextualRunner::init::_setup_components::_run_query::_process_query
     def _process_query(self, query: str) -> None:
         """Process a user query with AI using ReAct pattern.
 
@@ -562,6 +563,7 @@ class REPL:
             self._pending_plan_request = False
 
         # Delegate to query processor
+        # 会区分是否要求plan
         result = self.query_processor.process_query(
             query,
             self.agent,
@@ -574,6 +576,7 @@ class REPL:
         # Update state from query processor results
         self._last_operation_summary, self._last_error, self._last_latency_ms = result
 
+    # runner.py::TextualRunner::init::_setup_components::_run_query::_process_query_with_callback
     def _process_query_with_callback(self, query: str, ui_callback) -> None:
         """Process a user query with AI using ReAct pattern with UI callback for real-time updates.
 
