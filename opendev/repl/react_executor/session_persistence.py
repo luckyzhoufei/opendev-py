@@ -166,6 +166,7 @@ class SessionPersistenceMixin:
             removed = full_result.get("lines_removed", 0)
             self._compactor.artifact_index.record(file_path, "modified", f"+{added}/-{removed}")
 
+    # call in iteration.py::_handle_no_tool_calls
     def _add_assistant_message(self, content: str, raw_content: Optional[str]):
         """Add assistant message to session."""
         metadata = {"raw_content": raw_content} if raw_content is not None else {}

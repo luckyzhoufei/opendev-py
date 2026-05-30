@@ -387,7 +387,7 @@ class IterationMixin:
 
         # Dispatch based on tool calls presence
         if not tool_calls:
-            return self._handle_no_tool_calls(
+            return self._handle_no_tool_calls(    # 里面会把assistant message 添加到session 中的message中
                 ctx, content, response.get("message", {}).get("content")
             )
         # def tool_processing.py
@@ -533,7 +533,8 @@ class IterationMixin:
             content = "Done."
 
         self._display_message(content, ctx.ui_callback, dim=True)
-        self._add_assistant_message(content, raw_content)
+        # def session_persistence.py
+        self._add_assistant_message(content, raw_content)    # 整合消息
         return LoopAction.BREAK
 
     def _handle_failed_tool_nudge(

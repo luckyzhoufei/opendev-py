@@ -96,6 +96,7 @@ class MessageProcessor:
             self._injection_target = callback
             self._injection_queue_ref = injection_queue
 
+    # 决定消息走哪条路
     def enqueue_message(self, text: str, needs_display: bool = False) -> None:
         """Queue a message for processing.
 
@@ -117,7 +118,7 @@ class MessageProcessor:
             # Update the queue indicator so user sees "N queued".
             self._notify_queue_update(from_ui_thread=True)
             return
-
+        # agent 闲置 或者 输入带/
         item = (text, needs_display)
         self._pending.put_nowait(item)
         self._message_ready.set()  # Wake up processor immediately

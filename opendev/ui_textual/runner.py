@@ -803,7 +803,7 @@ class TextualRunner:
             )
             if react_executor is not None:
                 self.message_processor.set_injection_target(
-                    react_executor.inject_user_message,
+                    react_executor.inject_user_message,    # 注入用户消息  executor.py::inject_user_message
                     injection_queue=react_executor._injection_queue,
                 )
 
@@ -962,6 +962,7 @@ class TextualRunner:
             if not session:
                 return []
 
+            # 这里说明已经合并了message
             new_messages = session.messages[previous_count:]
 
             # Update terminal title if session title was set (e.g., by topic detector)

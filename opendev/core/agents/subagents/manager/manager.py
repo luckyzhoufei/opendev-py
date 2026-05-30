@@ -59,6 +59,7 @@ class AgentConfig:
         return all_tools
 
 
+# call in ExecutionMixin
 @dataclass
 class SubAgentDeps:
     """Dependencies for subagent execution."""

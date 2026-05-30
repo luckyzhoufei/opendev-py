@@ -234,6 +234,7 @@ class ReactExecutor(ThinkingMixin, ToolProcessingMixin, SessionPersistenceMixin,
         """
         self._hook_manager = hook_manager
 
+    # call in runner.py::_run_query
     def inject_user_message(self, text: str) -> None:
         """Inject a user message into the running ReAct loop.
 

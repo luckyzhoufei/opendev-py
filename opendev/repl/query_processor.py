@@ -458,7 +458,7 @@ class QueryProcessor:
 
         # Add user message to session
         user_msg = ChatMessage(role=Role.USER, content=query)
-        self.session_manager.add_message(user_msg, self.config.auto_save_interval)
+        self.session_manager.add_message(user_msg, self.config.auto_save_interval)  # 整合消息
         self._trigger_topic_detection(query)
 
         # Fire UserPromptSubmit hook
