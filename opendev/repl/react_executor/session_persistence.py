@@ -133,6 +133,7 @@ class SessionPersistenceMixin:
                 ctx.query, tool_call_objects, outcome, ctx.agent
             )
 
+    # 本文调用
     def _record_artifact(
         self,
         tool_name: str,

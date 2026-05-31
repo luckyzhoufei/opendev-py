@@ -20,6 +20,7 @@ class ConversationSummary:
     last_summarized_index: int  # Index in filtered messages list up to which we've summarized
 
 
+# Dual-Memory Architecture for Bounded Thinking
 # 压缩消息；每次压缩history summary + incremental messages
 @DeprecationWarning
 class ConversationSummarizer:

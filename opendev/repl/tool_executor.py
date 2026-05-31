@@ -8,7 +8,7 @@ from typing import Iterable, TYPE_CHECKING
 if TYPE_CHECKING:
     from opendev.models.message import ToolCall
 
-
+# record_tool_learnings 有在session_persistence.py中使用
 @DeprecationWarning
 class ToolExecutor:
     """Handles tool execution with approval, undo, and learning."""
@@ -164,6 +164,7 @@ class ToolExecutor:
             return True
         return False
 
+    # 在session_persistence.py中调用
     def record_tool_learnings(
         self,
         query: str,
