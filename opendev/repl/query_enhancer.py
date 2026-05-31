@@ -68,11 +68,12 @@ class QueryEnhancer:
 
         return enhanced, result.image_blocks
 
+    # 这个和context_picker.pick_context  _build_messages 很像
     def prepare_messages(
         self,
         query: str,
         enhanced_query: str,
-        agent: Any,
+        agent: Any,   # 这个agent主要取了其中的system prompt
         image_blocks: list[dict] | None = None,
         thinking_visible: bool = False,
     ) -> list:
@@ -92,6 +93,7 @@ class QueryEnhancer:
         messages: list[dict] = []
 
         if session:
+            # 历史的压缩和临近的拼接
             compaction = getattr(session, "metadata", {}).get("compaction_point")
             if compaction:
                 # Start with the compaction summary + messages added after compaction

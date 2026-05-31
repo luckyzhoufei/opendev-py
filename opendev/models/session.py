@@ -44,6 +44,7 @@ class SessionMetadata(BaseModel):
     thread_id: Optional[str] = None  # Thread ID for threaded channels
 
 
+# session中的playbook不共享
 class Session(BaseModel):
     """Represents a conversation session.
 

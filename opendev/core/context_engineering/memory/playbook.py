@@ -47,6 +47,7 @@ class Bullet:
         self.updated_at = datetime.now(timezone.utc).isoformat()
 
 
+# 和session绑定
 class Playbook:
     """Structured context store for accumulated strategies and insights.
 

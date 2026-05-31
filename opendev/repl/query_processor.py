@@ -479,6 +479,8 @@ class QueryProcessor:
         # Prepare messages for API (handles multimodal content if images present)
         messages = self._prepare_messages(query, enhanced_query, agent, image_blocks)
 
+        context = self._context_picker.pick_context(query, agent)  # 自己改动
+
         # Inject plan mode request if user toggled Shift+Tab
         if plan_requested:
             plan_path = self.mode_manager.get_plan_file_path() or "~/.opendev/plans/plan.md"

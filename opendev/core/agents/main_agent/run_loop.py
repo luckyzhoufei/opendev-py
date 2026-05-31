@@ -556,7 +556,7 @@ class RunLoopMixin:
                                     if t["id"] == tc["id"]:
                                         messages.append(
                                             {
-                                                "role": "tool",
+                                                "role": "tool",    # reminder 的时候，role不是user
                                                 "tool_call_id": t["id"],
                                                 "content": get_reminder("explore_first_nudge"),
                                             }

@@ -127,7 +127,7 @@ class ContextPicker:
         # 5. Add current query piece
         query_piece = self._create_query_piece(query, file_pieces)
         pieces.append(query_piece)
-        
+
         # 6. Assemble final messages
         messages = self._build_messages(
             system_prompt=system_piece.content,

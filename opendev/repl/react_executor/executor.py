@@ -602,7 +602,7 @@ class ReactExecutor(ThinkingMixin, ToolProcessingMixin, SessionPersistenceMixin,
             self._force_compact_next = False
             before_count = len(ctx.messages)
             compacted = self._compactor.compact_with_retry(ctx.messages, system_prompt)
-            ctx.messages[:] = compacted  # Mutate in-place
+            ctx.messages[:] = compacted  # Mutate in-place   这是会反复重复压缩
             after_count = len(ctx.messages)
             logger.info("Compacted %d messages -> %d", before_count, after_count)
             # Store compaction point in session metadata (like /compact)
